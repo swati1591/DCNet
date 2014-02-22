@@ -1,0 +1,14 @@
+//Instructions for integrating crypto++ with ns3
+
+1. Replace the wscript in your /ns-3.19 folder with the one in this repository. - remove the .txt extension from the file while downloading.
+2. Create your own wscript file inside the scratch folder with the following code in it.
+
+def build(bld):
+    obj = bld.create_ns3_program('Experiment', ['core', 'network'])
+    obj.source = 'try2-broadcast.cc'
+    obj.env.append_value("CXXFLAGS", "-I/usr/include/crypto++")
+    obj.env.append_value("LINKFLAGS", ["-L/usr/lib"])
+    obj.env.append_value("LIB", ["integer"])
+    
+3. Run the files from the scratch folder after including those header files
+  //sample programs for diffie - hellman and broadcast in this folder of repository
